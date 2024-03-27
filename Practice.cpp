@@ -1,76 +1,33 @@
-#include <iostream>
+#include <bits/stdc++.h>
 int main(){
     using namespace std;
-    string s;
-    cin >> s;
-    int counter = 0;
-    for (int i = 0; i < s.length(); i++){
-        if (s[i] == 'M'){
-            counter += 1000;
-        }
-        else if(s[i] == 'D'){
-            counter += 500;
-        }
-        else if(s[i] == 'L'){
-            counter += 50;
-        }
-        else if(s[i] == 'V'){
-            counter += 5;
-        }
-        else if(s[i] == 'C'){
-            if (i != s.length()-1){
-                if (s[i+1] == 'D'){
-                    counter += 400;
-                    i++;
-                }
-                else if (s[i+1] == 'M'){
-                    counter += 900;
-                    i++;
-                }
-                else{
-                    counter += 100;
-                }
+    vector<string> strs({"flower","flow","flight"});
+    string otpt;
+    string tmp = strs[0];
+    string smlstr = tmp;
+    int size = strs.size();
+    for (int i = 0; i < size; i++){
+        if (strs[i].length() < smlstr.length()){
+            smlstr = strs[i];
+        }        
+    }
+    for (int j = 0; j < smlstr.length(); j++){
+        int wc = 0;     
+        for (int k = 0; k < size; k++){
+            string temp = strs[k];
+            if (smlstr[j] == temp [j]){
+                wc += 1;
             }
             else{
-                counter += 100;
+                break;
             }
         }
-        else if(s[i] == 'X'){
-            if (i != s.length()-1){
-                if (s[i+1] == 'L'){
-                    counter += 40;
-                    i++;
-                }
-                else if (s[i+1] == 'C'){
-                    counter += 90;
-                    i++;
-                }
-                else{
-                    counter += 10;
-                }
-            }
-            else{
-                counter += 10;
-            }
+        if (wc == size){
+            otpt += smlstr[j];
         }
-        else if(s[i] == 'I'){
-            if (i != s.length()-1){
-                if (s[i+1] == 'V'){
-                    counter += 4;
-                    i++;
-                }
-                else if (s[i+1] == 'X'){
-                    counter += 9;
-                    i++;
-                }
-                else{
-                    counter += 1;
-                }
-            }
-            else{
-                counter += 1;
-            }
+        else{
+            break;
         }
     }
-    cout << counter;
+    cout << otpt;
 }
